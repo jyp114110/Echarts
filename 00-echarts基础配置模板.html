@@ -51,19 +51,39 @@
           show: true, // 是否显示工具箱
           left: 'center', // 工具箱位置
           orient: 'vertical', // 布局方式 默认水平
+          iconStyle: {
+            color: '#ccc',
+            backgroundColor: 'red'
+          },
+          showTitle: true, // 鼠标触摸 是否有文字提示 默认为 true
           feature: {
-            saveImage: {
+            saveAsImage: {
               // 是否保存为图片
-              show: true
+              show: true,
+              title: '保存为图片', // 提示文字
+              type: 'jpeg' // 图片的格式
             },
             dataView: {
               // 数据视图
-              show: true
+              show: true,
+              readyOnly: true, // 是否只读
+              optionToContent: function(opt) {
+                // 自定义 dataView 展现函数
+                console.log(opt)
+              }
             },
 
             magicType: {
               // 类型切换
-              type: ['line', 'bar']
+              show: true,
+              title: {
+                line: '折线图',
+                bar: '柱状图',
+                stack: '堆积图',
+                tiled: '平铺图'
+              },
+
+              type: ['line', 'bar', 'stack', 'tiled']
             },
             restore: {
               // 刷新恢复
@@ -82,8 +102,10 @@
         // },
         xAxis: {
           // x轴
-          type: 'category', // 坐标轴类型，横轴默认为类目轴
+          type: 'category', // 坐标轴类型，横轴默认为类目轴 category / value / time / log
+          boundaryGap: true, //坐标轴两边留白策略，默认值为true，类目轴和非类目轴的设置和表现不一样。
           data: [
+            // 数组（也可以是一个 自调用的匿名函数 内部 return 一个数组）
             'Jan',
             'Feb',
             'Mar',
@@ -100,7 +122,7 @@
         },
         yAxis: {
           // y轴
-          type: 'value', // 坐标轴类型，纵轴默认为数值轴
+          type: 'value', // 坐标轴类型，纵轴默认为数值轴 value
           // boundaryGap: [0.1, 0.1], // 坐标轴两端空白策略，数组内数值代表百分比
           splitNumber: 4 // 坐标轴的分割段数，默认为5
         },
