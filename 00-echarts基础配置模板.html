@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="width:900px;height: 600px;"></div>
+
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      // 初始化
+      var myChart = echarts.init(document.getElementById('main'))
+
+      // // 过渡效果
+      // myChart.showLoading({
+      //   text: '正在努力加载数据....'
+      // })
+      // myChart.hideLoading()
+
+      // 设置配置项
+      var option = {
+        title: {
+          // 标题
+          text: 'Echarts基础配置模板',
+          // left: 'center', // 标题水平位置
+          // top: 'center', // 标题的垂直位置
+          backgroundColor: '#000000', // 标题背景色
+          textStyle: {
+            color: '#ffffff' // 字体颜色
+          },
+          subtext: '子标题',
+          borderWidth: 5, // 边框宽度
+          borderColor: 'red' // 边框颜色
+        },
+        legend: {
+          // 图例配置
+          // padding: 5, // 图例内边距，单位px 默认上下内边距为5
+          // itemGap: 10, // legend 各个item 之间的间隔，横向布局时为水平间隔，纵向布局时为纵向间隔
+          data: ['ios', 'android'],
+          left: 'right' // 图例位置
+        },
+        tooltip: {
+          // 提示配置
+          trigger: 'item' // 触发类型，默认数据触发，可选为 aixs
+        },
+        toolbox: {
+          // 工具箱
+          show: true, // 是否显示工具箱
+          left: 'center', // 工具箱位置
+          orient: 'vertical', // 布局方式 默认水平
+          feature: {
+            saveImage: {
+              // 是否保存为图片
+              show: true
+            },
+            dataView: {
+              // 数据视图
+              show: true
+            },
+
+            magicType: {
+              // 类型切换
+              type: ['line', 'bar']
+            },
+            restore: {
+              // 刷新恢复
+              show: true
+            }
+          }
+        },
+        dataZoom: {
+          // 数据区域缩放
+          start: 20, // 开始的比例
+          end: 80 // 结束的比例
+          // realtime: false // 是否实时缩放
+        },
+        // visualMap: {
+        //   calculable: true // 是否显示拖拽用的手柄（手柄能拖拽调整选中范围）
+        // },
+        xAxis: {
+          // x轴
+          type: 'category', // 坐标轴类型，横轴默认为类目轴
+          data: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec'
+          ]
+        },
+        yAxis: {
+          // y轴
+          type: 'value', // 坐标轴类型，纵轴默认为数值轴
+          // boundaryGap: [0.1, 0.1], // 坐标轴两端空白策略，数组内数值代表百分比
+          splitNumber: 4 // 坐标轴的分割段数，默认为5
+        },
+
+        series: [
+          // 数据
+          {
+            name: 'ios', // 系列名称
+            type: 'bar', // 图表类型
+            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+          },
+          {
+            name: 'android',
+            type: 'bar',
+            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+          }
+        ]
+      }
+
+      // 给 echarts 设置数据
+      myChart.setOption(option)
+    </script>
+  </body>
+</html>

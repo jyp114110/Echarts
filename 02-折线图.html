@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="width: 500px; height: 400px;"></div>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      var myChart = echarts.init(document.getElementById('main'))
+      var option = {
+        title: {
+          // 标题
+          text: 'Echarts折线图'
+        },
+        toolbox: {
+          // 工具箱
+          show: true,
+          feature: {
+            saveAsImage: {
+              // 保存为图片
+              show: true
+            },
+            dataView: {
+              // 数据视图
+              show: true
+            },
+            magicType: {
+              // 类型切换
+              type: ['line', 'bar']
+            }
+          }
+        },
+        tooltip: {
+          show: true,
+          trigger: 'axis'
+        },
+        legend: {
+          // 示例
+          data: ['销量']
+        },
+        // X 轴
+        xAxis: {
+          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+        },
+
+        // Y 轴
+        yAxis: {},
+        series: [
+          {
+            name: '销量',
+            type: 'line',
+            data: [7, 30, 50, 11, 40, 80],
+            markLine: {
+              symbol: '',
+              data: [
+                {
+                  type: 'average',
+                  name: '平均值',
+                  lineStyle: {
+                    normal: {
+                      // 必须有normal配置 才会生效 但官方文档没有写
+                      type: 'dashed',
+                      color: 'red'
+                    }
+                  }
+                }
+              ]
+            },
+
+            itemStyle: {
+              // 必须有normal配置 才会生效 但官方文档没有写
+              normal: {
+                color: 'skyblue'
+              }
+            }
+          }
+        ]
+      }
+
+      myChart.setOption(option)
+    </script>
+  </body>
+</html>
