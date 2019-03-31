@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="width: 900px; height: 600px;"></div>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      let myChart = echarts.init(document.getElementById('main'))
+      let option = {
+        title: {
+          name: '气泡图示例'
+        },
+        tooltip: {
+          trigger: 'axis',
+          showDelay: 0,
+          axisPointer: {
+            type: 'cross',
+            lineStyle: {
+              type: 'dashed',
+              width: 1
+            }
+          }
+        },
+        legend: {
+          data: ['scatter1', 'scatter2']
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            mark: {
+              // eCharts 3.0 无效
+              show: true
+            },
+            dataZoom: {
+              show: true
+            },
+            dataView: {
+              show: true,
+              readOnly: true
+            },
+            restore: {
+              show: true
+            }
+          }
+        },
+        xAxis: [
+          {
+            type: 'value',
+            splitNumber: 4, //分割段数，不指定时根据min、max算法调整
+            scale: true //脱离0值比例，放大聚焦到最终_min，_max区间
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            splitNumber: 4,
+            scale: true
+          }
+        ],
+        series: [
+          {
+            name: 'scatter1',
+            type: 'scatter',
+            symbol: 'circle', // 标记的图形。包括 circle、rect、roundRect、triangle 、diamond 、pin 、 arrow 、none
+            data: [
+              [3.275154, 2.957587],
+              [-3.344465, 2.603513],
+              [0.355083, -3.376585],
+              [1.852435, 3.547351],
+              [-2.078973, 2.552013],
+              [-0.993756, -0.884433],
+              [2.682252, 4.007573],
+              [-3.087776, 2.878713],
+              [-1.565978, -1.256985]
+            ],
+            symbolSize: function(value) {
+              // 标记的大小
+              var radius = (value[0] - 0) * 16 + 4
+              return Math.max(Math.round(radius), 1) || 1
+            }
+          },
+          {
+            name: 'scatter2',
+            type: 'scatter',
+            symbol: 'circle',
+            data: [
+              [2.441611, 0.444826],
+              [-0.659487, 3.111284],
+              [-0.459601, -2.618005],
+              [2.17768, 2.387793],
+              [-2.920969, 2.917485],
+              [-0.028814, -4.168078],
+              [3.625746, 2.119041],
+              [-3.912363, 1.325108],
+              [-0.551694, -2.814223]
+            ],
+
+            symbolSize: function(value) {
+              var radius = ((value[0] - 0) * 16) / 10 + 4
+              return Math.max(Math.round(radius), 8) || 8
+            }
+          }
+        ]
+      }
+      myChart.setOption(option)
+    </script>
+  </body>
+</html>
