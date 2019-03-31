@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <div id="main" style="width: 900px; height: 600px;"></div>
+  <script src="./js/echarts.min.js"></script>
+  <script>
+    let myChart = echarts.init(document.getElementById('main'))
+    let option = {
+      title: {
+        text: '散点图示例'
+      },
+      tooltip: {
+        trigger: 'item',
+        showDelay: 0, // 浮层显示的延迟，单位为 ms，默认没有延迟
+        formatter: function(params) {
+          //  自定义提示框浮层内容格式器，支持字符串模板和回调函数两种形式
+          console.log(params)
+          if (params.value.length > 1) {
+            return (
+              params.seriesName +
+              '</br>' +
+              params.value[0] +
+              'cm' +
+              '<br>' +
+              params.value[1] +
+              'kg'
+            )
+          }
+        },
+        axisPointer: {
+          // 是配置坐标轴指示器的快捷方式
+          type: 'cross', // 坐标轴指示器的类型，默认 type 为line，可选为 line | cross | shadow | none
+          lineStyle: {
+            type: 'dashed',
+            width: 1
+          }
+        }
+      },
+      legend: {
+        data: ['女性', '男性']
+      },
+      xAxis: [
+        {
+          type: 'value',
+          precious: 2, // 文彪标签中数值的小数点精度，默认根据当前周的值自动判断，也可以指定 如 2 表示保留两位小数
+          scale: true, // 是否脱离 0 值比例，设置成 true 后坐标刻度则不会强制包含 0刻度值。在双数值轴的散点图中比较有用
+          name: '身高(cm)',
+          axisLabel: {
+            //坐标轴刻度的相关设置
+            formatter: '{value} cm' // 自定义 x轴 value是固定写死的，代表data中x轴的每一项
+          }
+        }
+      ],
+      yAxis: [
+        {
+          type: 'value',
+          precious: 2,
+          scale: true,
+          name: '体重(kg)'
+        }
+      ],
+      series: [
+        {
+          name: '女性',
+          type: 'scatter',
+          data: [
+            [161.2, 51.6],
+            [167.5, 59.0],
+            [159.5, 49.2],
+            [157.0, 63.0],
+            [155.8, 53.6],
+            [170.0, 59.0],
+            [159.1, 47.6],
+            [166.0, 69.8],
+            [176.2, 66.8],
+            [160.2, 75.2]
+          ]
+        },
+        {
+          name: '男性',
+          type: 'scatter',
+          data: [
+            [174.0, 65.6],
+            [175.3, 71.8],
+            [193.5, 80.7],
+            [186.5, 72.6],
+            [187.2, 78.8],
+            [181.5, 74.8],
+            [184.0, 86.4],
+            [184.5, 78.4],
+            [175.0, 62.0],
+            [184.0, 81.6]
+          ]
+        }
+      ]
+    }
+    myChart.setOption(option)
+  </script>
+  <body></body>
+</html>
