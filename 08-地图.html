@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      let myChart = echarts.init(document.getElementById('main'))
+      let option = {
+        title: {
+          text: '手机销量',
+          subtext: '纯属虚构',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'center',
+          data: ['iphon3', 'iphone4', 'iphone4']
+        },
+        dataRange: {
+          // 数据范围
+          min: 6,
+          max: 2500,
+          left: 'left',
+          top: 'bottom',
+          text: ['高', '低'],
+          calculable: true
+        },
+        toolbox: {
+          show: true,
+          orient: 'vertical',
+          left: 'right',
+          top: 'bottom',
+          feature: {
+            dataView: {
+              show: true,
+              readOnly: true
+            },
+            dataZoom: {
+              show: true
+            },
+            restore: {
+              show: true
+            },
+            saveAsImage: {
+              show: true
+            }
+          }
+        },
+        series: [
+          {
+            name: 'iphone3',
+            type: 'map',
+            map: 'china' // 地图类型 ECharts 中提供了两种格式的地图数据，一种是可以直接 script 标签引入的 js 文件，引入后会自动注册地图名字和数据。还有一种是 JSON 文件，需要通过 AJAX 异步加载后手动注册。
+          }
+        ]
+      }
+      myChart.setOption(option)
+    </script>
+  </body>
+</html>

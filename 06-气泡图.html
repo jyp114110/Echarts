@@ -16,7 +16,7 @@
           name: '气泡图示例'
         },
         tooltip: {
-          trigger: 'axis',
+          trigger: 'item',
           showDelay: 0,
           axisPointer: {
             type: 'cross',
@@ -52,14 +52,14 @@
           {
             type: 'value',
             splitNumber: 4, //分割段数，不指定时根据min、max算法调整
-            scale: true //脱离0值比例，放大聚焦到最终_min，_max区间
+            scale: false //脱离0值比例，放大聚焦到最终_min，_max区间
           }
         ],
         yAxis: [
           {
             type: 'value',
             splitNumber: 4,
-            scale: true
+            scale: false
           }
         ],
         series: [
@@ -87,7 +87,7 @@
           {
             name: 'scatter2',
             type: 'scatter',
-            symbol: 'circle',
+            // symbol: 'circle',
             data: [
               [2.441611, 0.444826],
               [-0.659487, 3.111284],

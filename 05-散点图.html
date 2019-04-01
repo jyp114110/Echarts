@@ -50,6 +50,7 @@
           precious: 2, // 文彪标签中数值的小数点精度，默认根据当前周的值自动判断，也可以指定 如 2 表示保留两位小数
           scale: true, // 是否脱离 0 值比例，设置成 true 后坐标刻度则不会强制包含 0刻度值。在双数值轴的散点图中比较有用
           name: '身高(cm)',
+          splitNumber: 4,
           axisLabel: {
             //坐标轴刻度的相关设置
             formatter: '{value} cm' // 自定义 x轴 value是固定写死的，代表data中x轴的每一项
@@ -59,6 +60,7 @@
       yAxis: [
         {
           type: 'value',
+          splitNumber: 4,
           precious: 2,
           scale: true,
           name: '体重(kg)'
