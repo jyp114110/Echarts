@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="width:900px;height: 600px;"></div>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      let myCharts = echarts.init(document.getElementById('main'))
+      let option = {
+        title: {
+          text: '仪表盘--复杂'
+        },
+        toolbox: {
+          show: true,
+          left: 'right',
+          top: 'bottom',
+          feature: {
+            dataView: {
+              show: true,
+              readOnly: true
+            },
+            dataZoom: {
+              show: true
+            },
+            restore: {
+              show: true
+            },
+            saveAsImage: {
+              show: true,
+              type: 'png'
+            }
+          }
+        },
+        tooltip: {
+          formatter: '{a}<br>{b}:{c}'
+        },
+        series: [
+          {
+            name: '速度',
+            type: 'gauge',
+            z: 3, // 相当于 css中的 z-index
+            min: 0, // 最小值
+            max: 220, // 最大值
+            splitNumber: 11, // min-max 分成几等分
+            radius: '50%', // 半径
+            axisLine: {
+              // 坐标轴线--环形线粗细
+              lineStyle: {
+                width: 10
+              }
+            },
+            axisTick: {
+              // 坐标轴小标记 --小刻度线
+              length: 15,
+              lineStyle: {
+                color: 'auto'
+              }
+            },
+            splitLine: {
+              // 分割线--大刻度线
+              length: 20,
+              lineStyle: {
+                color: 'atuo'
+              }
+            },
+            title: {
+              textStyle: 'bolder',
+              fontSize: 20,
+              fontStyle: 'italic'
+            },
+            detail: {
+              textStyle: {
+                fontWeight: 'bolder'
+              },
+              formatter: '{value}km/h'
+            },
+            data: [
+              {
+                value: 40,
+                name: 'km/h'
+              }
+            ]
+          },
+          {
+            name: '转速',
+            type: 'gauge',
+            center: ['18%', '55%'], //圆心坐标--数组，默认全局居中
+            radius: '35%',
+            min: 0,
+            max: 7,
+            endAngle: 45, // 结束的角度
+            axisLine: {
+              lineStyle: {
+                width: 8
+              }
+            },
+            axisTick: {
+              length: 12,
+              lineStyle: {
+                color: 'auto'
+              }
+            },
+            splitLine: {
+              length: 20,
+              lineStyle: {
+                color: 'auto'
+              }
+            },
+            pointer: {
+              // 指针样式
+              width: 5
+            },
+            title: {
+              offsetCenter: [0, '-40%']
+            },
+            detail: {
+              textStyle: {
+                fontWeight: 'normal'
+              }
+            },
+            data: [
+              {
+                value: 5,
+                name: 'x1000t/min'
+              }
+            ]
+          },
+          {
+            name: '油表',
+            type: 'gauge',
+            center: ['77%', '58%'],
+            radius: '25%',
+            min: 0,
+            max: 2,
+            startAngle: 135,
+            endAngle: 45,
+            splitNumber: 2,
+            axisLine: {
+              lineStyle: {
+                width: 8
+              }
+            },
+            axisTick: {
+              splitNumber: 5,
+              length: 10,
+              lineStyle: {
+                color: 'auto'
+              }
+            },
+            axisLabel: {
+              //坐标轴文本标签
+              formatter: function(val) {
+                switch (val + '') {
+                  case '0':
+                    return 'E'
+                  case '1':
+                    return 'Gas'
+                  case '2':
+                    return 'F'
+                }
+              }
+            },
+            title: {
+              show: false
+            },
+            pointer: {
+              width: 2
+            },
+            detail: {
+              show: false
+            },
+            data: [
+              {
+                value: 0.5,
+                name: 'gas'
+              }
+            ]
+          }
+        ]
+      }
+
+      setInterval(() => {
+        option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0
+        option.series[1].data[0].value = (Math.random() * 7).toFixed(2) - 0
+        option.series[2].data[0].value = (Math.random() * 2).toFixed(2) - 0
+        // opiton.series[3].data[3].value = (Math.random() * 2).toFixed(2) - 0
+
+        myCharts.setOption(option)
+      }, 2000)
+    </script>
+  </body>
+</html>

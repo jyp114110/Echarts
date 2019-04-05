@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="width: 900px;height: 600px;"></div>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      let myChart = echarts.init(document.getElementById('main'))
+      let option = {
+        title: {
+          text: '漏斗图示例'
+        },
+        legend: {
+          data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            dataZoom: {
+              show: true
+            },
+            dataView: {
+              show: true,
+              readOnly: false
+            },
+            saveImage: {
+              show: true,
+              title: '保存为图片',
+              type: 'png'
+            },
+            restore: {
+              show: true
+            }
+          }
+        },
+        series: [
+          {
+            name: '访问来源',
+            type: 'funnel',
+            x: '30%', // 	左上角横坐标，数值单位px，支持百分比（字符串）
+            x2: '15%', // 右下角横坐标
+            y2: '10%', // 右下角纵坐标
+            min: 0, // 最小值
+            max: 100, // 最大值
+            itemStyle: {
+              // 图形样式，可以设置图表内默认样式和强调样式(悬挂样式)
+              normal: {
+                labelLine: {
+                  // 标签视觉引导线，默认显示
+                  show: true
+                },
+                emphasize: {
+                  labelLine: {
+                    show: true
+                  }
+                }
+              }
+            },
+            sort: 'ascending', //数据排序， 可以取ascending, descending
+            data: [
+              { value: 20, name: '直接访问' },
+              { value: 40, name: '邮件营销' },
+              { value: 60, name: '联盟广告' },
+              { value: 80, name: '视频广告' },
+              { value: 100, name: '搜索引擎' }
+            ]
+          }
+        ]
+      }
+      myChart.setOption(option)
+    </script>
+  </body>
+</html>
