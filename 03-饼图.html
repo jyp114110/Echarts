@@ -32,6 +32,7 @@
             type: 'pie', //  饼图
             radius: '55%', // 半径：支持绝对值(px)和百分比。传数组实现环形图(内半径，外半径)
             center: ['50%', '60%'], // 圆形坐标，直至绝对值(px)和百分比
+
             data: [
               { value: 335, name: '直接访问' },
               { value: 310, name: '邮件营销' },
@@ -39,7 +40,14 @@
               { value: 135, name: '视频广告' },
               { value: 1548, name: '搜索引擎' }
             ],
+
             itemStyle: {
+              normal: {
+                labelLine: {
+                  // 视觉引导线
+                  show: false
+                }
+              },
               emphasis: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
