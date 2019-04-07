@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="widows: 900px;height:600px"></div>
+    <a href="javascrtipt:void(0)" onClick="changeTheme('dark')">dark</a>
+    <a href="javascript:void(0)" onClick="changeTheme('macarons')">macarons</a>
+    <script src="./js/echarts.min.js"></script>
+    <script src="./js/theme/dark.js"></script>
+    <script src="./js/theme/macarons.js"></script>
+    <script>
+      // let myChart = echarts.init(document.getElementById('main'), 'dark') // 配置初始化主题
+      var myChart = echarts.init(document.getElementById('main'))
+      let option = {
+        // 标题
+        title: {
+          text: 'Echarts 入门示例'
+        },
+        // 工具箱
+        toolbox: {
+          show: true, // 工具箱是否显示
+          feature: {
+            // 是否保存为图片
+            saveAsImage: {
+              show: true
+            }
+          }
+        },
+        // 图例
+        legend: {
+          data: ['销量']
+        },
+        // X轴
+        xAxis: {
+          data: ['高跟鞋', '裤子', '袜子']
+        },
+        // Y轴
+        yAxis: {},
+        //数据
+        series: [
+          {
+            name: '销量',
+            type: 'bar', // 图例类型
+            data: [5, 10, 15]
+          }
+        ]
+      }
+      myChart.setOption(option)
+      // 实现不了主题切换，且主题切换容易造成内存泄露
+      // function changeTheme(theme) {
+      //   console.log(theme)
+      //   myChart.clear()
+      //   myChart = echarts.init(document.getElementById('main'), theme)
+      //   myChart.setOption(option)
+      // }
+    </script>
+  </body>
+</html>

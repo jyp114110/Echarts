@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="height:600px;width: 900px"></div>
+    <button onClick="add()">增加</button>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      let myChart = echarts.init(document.getElementById('main'))
+      let data = [5, 20, 10, 15, 10, 20]
+      let option = {
+        title: {
+          text: '数据动态更新'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            label: {
+              // 提示器文本
+              show: true
+            }
+          },
+          position: function(point, params, dom, rect, size) {
+            // 位置
+            return [point[0], '10%']
+          }
+        },
+        legend: {
+          data: ['销量']
+        },
+        xAxis: {
+          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+        },
+        yAxis: {},
+        series: [
+          {
+            name: '销量',
+            type: 'bar',
+            data: data
+          }
+        ]
+      }
+      myChart.setOption(option)
+
+      function add() {
+        // data = data.map(v => Number.parseInt(Math.random() * 10) + v) // 无效产生的是新对象
+
+        // console.log(data)
+        var inc = Math.floor(Math.random() * 10)
+        //  改变原数据有效
+        // for (var i in data) {
+        //   data[i] = data[i] + inc
+        // }
+        data.forEach((v, i) => {
+          data[i] = v + inc
+        })
+        console.log(data)
+
+        // option.series.data = data
+        console.log(option.series)
+        myChart.clear()
+        myChart.setOption(option)
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--1-为Echarts准备一个具备大小(宽高)的DOM  -->
+    <div id="main" style="width: 900px;height: 600px;"></div>
+    <!-- 2-引入echarts -->
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      // 3-基于准备好的dom ，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'))
+
+      // 4-指定图表配置项和数据
+      var option = {
+        // 标题
+        title: {
+          text: 'Echarts 入门示例'
+        },
+        // 工具箱
+        toolbox: {
+          show: true, // 工具箱是否显示
+          feature: {
+            // 是否保存为图片
+            saveAsImage: {
+              show: true
+            }
+          }
+        },
+        // 图例
+        legend: {
+          data: ['销量']
+        },
+        // X轴
+        xAxis: {
+          data: ['高跟鞋', '裤子', '袜子']
+        },
+        // Y轴
+        yAxis: {},
+        //数据
+        series: [
+          {
+            name: '销量',
+            type: 'bar', // 图例类型
+            data: [5, 10, 15]
+          }
+        ]
+      }
+      // 5-使用刚指定的配置项和数据显示图表
+      myChart.setOption(option)
+      // 注册鼠标点击事件
+      myChart.on('click', params => {
+        console.log(params.name)
+        window.open('https://www.baidu.com')
+      })
+    </script>
+  </body>
+</html>

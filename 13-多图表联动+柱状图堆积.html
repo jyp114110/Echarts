@@ -70,22 +70,20 @@
         ]
       }
       let option2 = {
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow' // 选中背景显示阴影，默认为一条线
-          }
-        },
+        // tooltip: {
+        //   trigger: 'axis',
+        //   axisPointer: {
+        //     type: 'shadow' // 选中背景显示阴影，默认为一条线
+        //   }
+        // },
         legend: {
-          orient: 'vertical',
-          left: 'right',
           data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
         },
         toolbox: {
           show: true,
           feature: {
             dataView: { show: true, readOnly: true },
-            dataZoom: { show: true },
+            // dataZoom: { show: true },   // 会影响纵坐标的刻度间隔
             restore: { show: true },
             saveAsImage: { show: true, type: 'png' },
             magicType: {
@@ -93,6 +91,7 @@
             }
           }
         },
+
         xAxis: [
           {
             type: 'category',
@@ -112,32 +111,47 @@
           {
             name: '直接访问',
             type: 'bar',
-            stack: '总量', // 柱状图堆积：数据堆叠，同个类目轴上系列配置相同的stack值可以堆叠放置。==> 双数轴时无效
-            data: [320, 332, 381, 334, 390, 330, 320]
+            stack: '总量', //
+            itemStyle: {
+              // normal: { label: { show: true, position: 'insideRight' } }
+            },
+            data: [320, 302, 301, 334, 390, 330, 320]
           },
           {
             name: '邮件营销',
             type: 'bar',
             stack: '总量',
-            data: [128, 132, 181, 134, 90, 230, 210]
+            itemStyle: {
+              normal: { label: { show: true, position: 'insideRight' } }
+            },
+            data: [120, 132, 101, 134, 90, 230, 210]
           },
           {
             name: '联盟广告',
             type: 'bar',
             stack: '总量',
-            data: [220, 182, 191, 234, 293, 338, 318]
+            itemStyle: {
+              normal: { label: { show: true, position: 'insideRight' } }
+            },
+            data: [220, 182, 191, 234, 290, 330, 310]
           },
-
           {
             name: '视频广告',
             type: 'bar',
-            data: [150, 232, 281, 145, 193, 330, 410]
+            stack: '总量',
+            itemStyle: {
+              normal: { label: { show: true, position: 'insideRight' } }
+            },
+            data: [150, 212, 201, 154, 190, 330, 410]
           },
           {
             name: '搜索引擎',
             type: 'bar',
             stack: '总量',
-            data: [420, 532, 581, 534, 620, 630, 320]
+            itemStyle: {
+              normal: { label: { show: true, position: 'insideRight' } }
+            },
+            data: [820, 832, 901, 934, 1290, 1330, 1320]
           }
         ]
       }
@@ -145,6 +159,14 @@
       myChart2.setOption(option2)
       // 多图联动
       echarts.connect([myChart1, myChart2])
+
+      // 适应 浏览器窗口大小的变化
+      setTimeout(() => {
+        winodow.onresize = function() {
+          myChart1.resize()
+          myChart2.resize
+        }
+      }, 200)
     </script>
   </body>
 </html>
