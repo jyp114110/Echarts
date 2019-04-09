@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="main" style="height: 600px;width: 900px;"></div>
+    <script src="./js/echarts.min.js"></script>
+    <script>
+      let myChart = echarts.init(document.getElementById('main'))
+      let option = {
+        title: {
+          text: '组件交互事件'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            dataView: {
+              show: true,
+              readOnly: true
+            },
+            restore: true,
+            magicType: ['pie', 'bar']
+          }
+        },
+        legend: {
+          data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        },
+        series: [
+          {
+            name: '访问来源',
+            type: 'pie', //  饼图
+            radius: '55%', // 半径：支持绝对值(px)和百分比。传数组实现环形图(内半径，外半径)
+            center: ['50%', '60%'], // 圆形坐标，直至绝对值(px)和百分比
+
+            data: [
+              { value: 335, name: '直接访问' },
+              { value: 310, name: '邮件营销' },
+              { value: 234, name: '联盟广告' },
+              { value: 135, name: '视频广告' },
+              { value: 1548, name: '搜索引擎' }
+            ],
+
+            itemStyle: {
+              normal: {
+                labelLine: {
+                  // 视觉引导线
+                  show: false
+                }
+              },
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      }
+      // 组件交互行为--图例切换--可以实现
+      // myChart.on('legendselectchanged', function(params) {
+      //   console.log(params)
+      // })
+      myChart.setOption(option)
+      // 组件交互行为--图例切换--可以实现
+      myChart.on('legendselectchanged', function(params) {
+        console.log(params)
+      })
+    </script>
+  </body>
+</html>
